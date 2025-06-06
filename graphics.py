@@ -3,35 +3,46 @@ from tkinter import Tk, BOTH, Canvas
 class Window:
     def __init__(self, width, height):
         # Create the root window
-        self.root = Tk()
-        self.root.title("Maze Solver")
+        self.__root = Tk()
+        self.__root.title("Maze Solver")
 
         # Create the canvas
-        self.canvas = Canvas(self.root, width=width, height=height)
-        self.canvas.pack(fill=BOTH, expand=True)
+        self.__canvas = Canvas(self.__root, width=width, height=height)
+        self.__canvas.pack(fill=BOTH, expand=True)
 
         # Window state
-        self.running = False
+        self.__running = False
 
         # Connect the window's close button (X) to the self.close method
-        self.root.protocol("WM_DELETE_WINDOW", self.close)
+        self.__root.protocol("WM_DELETE_WINDOW", self.close)
     
     def redraw(self):
         # Forces Tkinter to update the window and any changes on the canvas
-        self.root.update_idletasks()
-        self.root.update()
+        self.__root.update_idletasks()
+        self.__root.update()
 
     def wait_for_close(self):
-        self.running = True
-        while self.running:
+        self.__running = True
+        while self.__running:
             self.redraw()
+        print("window closed...")
+
+    def draw_line(self, line, fill_color="black"):
+        line.draw(self.__canvas, fill_color)
+
         
     def close(self):
-        self.running = False
+        self.__running = False
 
-def main():
-    win = Window(800, 600)  # You can change the width and height as needed
-    win.wait_for_close()
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
 
-if __name__ == "__main__":
-    main()
+class Line:
+    def __init__(self, p1, p2):
+        self.p1 = p1
+        self.p2 = p2
+
+    def draw(self, canvas, fill_color = "black"):
+        canvas.create_line(self.p1.x, self.p1.y, self.p2.x, self.p2.y, fill=fill_color, width=2)
