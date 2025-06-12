@@ -7,7 +7,7 @@ class Window:
         self.__root.title("Maze Solver")
 
         # Create the canvas
-        self.__canvas = Canvas(self.__root, width=width, height=height)
+        self.__canvas = Canvas(self.__root, width=width, height=height, bg="#d9d9d9")
         self.__canvas.pack(fill=BOTH, expand=True)
 
         # Window state
