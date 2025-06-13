@@ -14,7 +14,7 @@ def main():
     win = Window(screen_x, screen_y)  # You can change the width and height as needed
     
 
-    maze = Maze(margin, margin, num_rows, num_cols, cell_size_x, cell_size_y, win)
+    maze = Maze(margin, margin, num_rows, num_cols, cell_size_x, cell_size_y, win, 10)
 
     #l = Line(Point(50, 50), Point(400, 400))
     #win.draw_line(l, "black")
